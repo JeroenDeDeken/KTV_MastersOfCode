@@ -1,0 +1,17 @@
+<ul class='menu-left'>
+	<li class='competitions'
+		ng-class="{ 'competitions active': isActive(0) }"><a
+		ng-click="selectItem(0)">{{competition.title}}</a></li>
+	<li class='assignments'
+		ng-class="{ 'assignments active': isActive(1) }"><a
+		ng-click="selectItem(1)">{{ 'ASSIGNMENTS' | translate }}</a></li>
+	<li class='hints' ng-class="{ 'hints active': isActive(2) }"><a
+		ng-click="selectItem(2)">{{ 'HINTS' | translate }}</a></li>
+	<li class='rounds' ng-class="{ 'rounds active': isActive(3) }"><a
+		ng-click="selectItem(3)">{{ 'ROUNDS' | translate }}</a></li>
+	<li class='participants'
+		ng-class="{ 'participants active': isActive(4) }"><a
+		ng-click="selectItem(4)">{{ 'PARTICIPANTS' | translate }}</a></li>
+	<li class='teams' ng-class="{ 'teams active': isActive(5) }"><a
+		ng-click="selectItem(5)">{{ 'TEAMS' | translate }}</a></li>
+</ul>

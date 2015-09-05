@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Masters of Code - Register</title>
+<script src="assets/lib/jquery/jquery.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400'
+	rel='stylesheet' type='text/css'>
+<link href='/assets/css/style.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+
+		function addMember(){
+			var container = document.getElementById("memberInnerContainer");
+			var membersubcontainer = document.createElement("div");
+			membersubcontainer.id = "member_sub";
+			
+			var input = document.createElement("input");
+			input.type = "text";
+			input.id = "fullMemberName";
+			input.placeholder = "Full member name";
+			membersubcontainer.appendChild(input);
+			var input = document.createElement("input");
+			input.type = "text";
+			input.id = "emailMember";
+			input.placeholder = "E-mail member";
+			membersubcontainer.appendChild(input);
+			membersubcontainer.appendChild(document.createElement("br"));
+			
+			var button = document.createElement('button');
+			button.innerHTML = 'Delete';
+			button.id = 'btDeleteMember';
+			button.className = "footer-button";
+			button.type = 'button';
+			button.onclick = function() { deleteMember(this); };
+			membersubcontainer.appendChild(button);
+
+			$( container ).prepend( membersubcontainer );
+			$( container ).find("#member_sub").last().hide().show(200);
+			
+		}
+		
+		function deleteMember(member){
+			$(member).parent().hide(200).remove();
+		}
+
+		function isUsernameValid(username){
+			var usernamepattern = new RegExp("^[a-zA-Z0-9]*$");
+			
+			if(username == ""){
+				alert("Username is required");
+				return false;
+			}
+			else if(usernamepattern.test(username)){
+	            return true;
+	        } else {
+	        	alert("Invalid username.\n Username may only consist of numbers and lowercase letters.");
+		        return false;
+		    }
+		}
+
+		function isPasswordValid(password){
+			if(password == ""){
+				alert("Password is required");
+				return false;
+			} else{
+				return true;
+			}
+		}
+
+		function isTeamnameValid(teamname){
+			var minimumTeamNameLength = 1;
+			var maximumTeamNameLength = 30;
+			
+			if(teamname.length >= minimumTeamNameLength){
+				if(teamname.length <= maximumTeamNameLength){
+					return true;
+				} else {
+					alert("Only " + maximumTeamNameLength + " characters are allowed for your teamname.");
+					return false;
+				}
+			} else {
+				alert("Teamname is required");
+				return false;
+			}
+		}
+
+		function isFullnameValid(fullname){
+			var minimumFullnameLength = 1;
+			var maximumFullnameLength = 30;
+
+			if(fullname.length >= minimumFullnameLength){
+				if(fullname.length <= maximumFullnameLength){
+					return true;
+				} else {
+					alert("Only " + maximumFullnameLength + " characters are allowed for your full name.");
+					return false;
+				}
+			} else {
+				alert("Fullname is required");
+				return false;
+			}
+		}
+
+		function isEmailValid(email){
+			//Not yet implemented
+			return true;
+		}
+
+		function isMembersValid(members){
+			//Not yet implemented
+			return true;
+		}
+		
+		function ValidateData(username, password, teamname, fullname, email, members){
+			
+	        if(!isUsernameValid(username)){
+	            return false;
+	        } else if (!isPasswordValid(password)){
+		        return false;
+		    } else if (!isTeamnameValid(teamname)){
+			    return false;
+			} else if (!isFullnameValid(fullname)){
+				return false;
+			} else if (!isEmailValid(email)){
+				return false;
+			} else if (!isMembersValid(members)){
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		function post(){
+			var _teamname = $("#teamname").val();
+			var _username = $("#username").val();
+			var _fullname = $("#fullname").val();
+			var _email = $("#email").val();
+			var _password = $("#password").val();
+			var _members = new Array();
+			
+			if(ValidateData(_username, _password, _teamname, _fullname, _email, _members)){
+				$("#memberContainer #memberInnerContainer #member_sub").each(function() {
+					//alert("found sub");
+					if($(this).find("#fullMemberName").val() != "" && $(this).find("#emailMember").val() != "") {
+						_members.push({membername: $(this).find("#fullMemberName").val(), email: $(this).find("#emailMember").val(), team: _username});
+					}
+				});
+				
+				var path = "http://" + location.host + "/api/users";
+				var data = {teamname: _teamname, role: "team", username: _username, password: _password, fullname: _fullname, email: _email, members: _members};
+
+				$.ajax({
+					  type: "POST",
+					  url: path,
+					  contentType: "application/json",
+					  data: JSON.stringify(data),
+					  success: function(data) {
+					    	console.log("succes: " + JSON.stringify(data));
+					    	window.location = "/";
+					  },
+					  error: function(xhr, textStatus, errorThrown) {
+						  	console.log("error: " + JSON.stringify(xhr) + textStatus + "," + errorThrown);
+					  }
+					});
+			}			
+		}
+	</script>
+</head>
+<body>
+
+	<div id="register">
+		<a href='#' class='logo'></a>
+		<form method='POST' style='width: 100%; float: left;'>
+
+			<div id="infoContainer">
+				<h1
+					style='color: white; font-weight: 400; margin: 0px; padding: 0px;'>Team
+					info</h1>
+				<br> <input id='teamname' type='text' placeholder='Teamname'/>
+				<input id='fullname' type='text' placeholder='Your full name'/> 
+				<input id='username' type='text' placeholder='Your username' /> 
+				<input id='password' type='password' placeholder='Your password' /> 
+				<input id='email' type='text' placeholder='Your e-mail' /> 
+				<input type='button' class='button register' onclick="post()" value='Register your team' />
+			</div>
+
+			<div id="memberContainer">
+				<h1
+					style='color: white; font-weight: 400; margin: 0px; padding: 0px;'>Members</h1>
+				<br>
+				<div id='memberInnerContainer'></div>
+				<input type='button' class='addmember' onclick="addMember()"
+					value='Add member' />
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

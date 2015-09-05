@@ -1,0 +1,58 @@
+<div id='header'>
+	<a ng-click="goToDashBoard()" class='logo'></a>
+
+	<div id='clock' ng-if="user.role !== 'guest'">
+		<canvas id="myCanvas" width="110" height="110"></canvas>
+	</div>
+
+	<div id='userpanel'>
+		<div class='left'>
+			<span>{{user.teamname}}</span> <span>{{user.fullname}}</span>
+		</div>
+		<div class='right'>
+			<a class='lang'>{{'LANGUAGE' | translate}}</a> <a ng-click="logout()">{{'LOG_OUT'
+				| translate}}</a>
+		</div>
+	</div>
+	<div class='langs'>
+		<span ng-click='toggleLanguage("en_EN")' class='en'>{{'LANGUAGE_ENGLISH'
+			| translate}}</span> <span ng-click='toggleLanguage("nl_NL")' class='nl'>{{'LANGUAGE_DUTCH'
+			| translate}}</span>
+	</div>
+
+</div>
+
+<script>
+$("a.lang").on("click", function() { 
+	$(".langs").slideToggle(100);
+	$("#userpanel" ).addClass("notransition"); 
+	$("#userpanel" ).css("width", "300px"); 
+	$("#userpanel .right").addClass("notransition"); 
+	$("#userpanel .right").css("width", "100px"); 
+ });
+$(".langs span").each(function() { 
+	$(this).on("click", function() {
+		$(".langs").hide(100); 
+	
+		$("#userpanel" ).removeClass("notransition"); 
+		$("#userpanel" ).css("width", "200px"); 
+		$("#userpanel" ).removeAttr( "style" );
+		$("#userpanel .right").removeClass("notransition"); 
+		$("#userpanel .right").css("width", "0px"); 
+		$("#userpanel .right" ).removeAttr( "style" );
+	});
+});
+
+$(".langs").mouseleave(function() {
+	$(".langs").hide(100);
+	$( "#userpanel" ).removeClass("notransition"); 
+	$( "#userpanel" ).css("width", "200px"); 
+	$( "#userpanel" ).removeAttr( "style" );
+	$("#userpanel .right").removeClass("notransition"); 
+	$("#userpanel .right").css("width", "0px"); 
+	$("#userpanel .right" ).removeAttr( "style" );
+});
+
+
+
+</script>

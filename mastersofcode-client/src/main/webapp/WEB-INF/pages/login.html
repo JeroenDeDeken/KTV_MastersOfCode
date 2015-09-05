@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Masters of Code - Login</title>
+
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+<link href='/assets/css/style.css' rel='stylesheet' type='text/css'>
+<script src="/assets/lib/jquery/jquery.js"></script>
+
+</head>
+
+<body>
+
+	<div id="login">
+		<a href='#' class='logo'></a>
+		<form method='POST' action='j_security_check'>
+
+			<input name='j_username' type='text' autocomplete="off" placeholder='Username' /> 
+			<input name='j_password' type='password' autocomplete="off" placeholder='Password' /> 
+			<input type='submit' class='button login' value='Login' /> 
+			<input type='button' class='button register' onclick="location.href='register'" value='Register your team' />
+			<input type='button' class='button register' onclick="loginGuest()" value='Login as guest' />
+
+		</form>
+
+	</div>
+
+
+</body>
+
+<script>
+function loginGuest() {
+	
+	var path = "http://" + location.host + "/api/security/guest";
+	$.ajax({
+		  type: "GET",
+		  url: path,
+		  success: function(data) {
+		    	window.location = "/#/public";
+		    	window.location.reload();
+		  },
+		  error: function(xhr, textStatus, errorThrown) {
+			  	console.log("error: " + JSON.stringify(xhr) + textStatus + "," + errorThrown);
+		  }
+		});
+}
+</script>
+
+</html>

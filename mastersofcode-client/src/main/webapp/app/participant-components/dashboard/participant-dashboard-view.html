@@ -1,0 +1,31 @@
+<div id="wrapper">
+
+	<header-View></header-View>
+
+	<div id='content'>
+		<div class='breadcrumbs'>
+			<a ui-sref="dashboard" class='home'></a> <span> / <a ui-sref="dashboard">{{ 'DASHBOARD' | translate }}</a> / {{competition.title}}</span>
+		</div>
+
+		<h1>{{ angular.isUndefined(competition) ? ("COMPETITION_NOT_STARTED" | translate) : competition.title}}</h1>
+	
+		<ul class='rounds'>
+			<li ng-class="isActiveRound(r) ? 'competition-block' : 'competition-block disabled'" ng-repeat="r in competition.rounds | orderObjectBy:'id'"><a ng-click="clickRound(r)">
+
+					<div class='left'>
+						<h1>{{ 'ROUND' | translate }} {{$index + 1}}</h1>
+						<p>{{r.assignment.participantDescription}}</p>
+					</div>
+					<div class='right'>
+						<span class='difficulty'>{{ 'DIFFICULTY' | translate }}<span>{{ multiplier > 1 ? ("HARD" | translate) : ("EASY" | translate) }}</span></span> <span
+							class='duration'>{{ 'DURATION' | translate }}<span>{{r.duration | secondsToDateTime | date: 'HH:mm:ss'}}</span></span>
+					</div>
+			</a></li>
+		</ul>
+		
+		
+		<div id='footer'>
+			<a ui-sref="scores" class='footer-button'>{{ 'VIEW_SCORES' | translate }}</a>
+		</div>
+	</div>
+</div>

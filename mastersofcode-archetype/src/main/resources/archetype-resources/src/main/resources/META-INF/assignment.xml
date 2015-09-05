@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assignment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="./moc_metadata_0.3.xsd">
+	<metadata>
+		<name>Assignment name</name>
+		<participants>Description for participants</participants>
+		<spectators>Description for spectators</spectators>
+		<creator>
+			<name>Creator name</name>
+			<organisation>Creator organisation</organisation>
+			<link>http://localhost</link>
+		</creator>
+	</metadata>
+	<files>
+		<file path="src/main/java/nl/mok/App1.java" write="true" />
+		<file path="src/main/java/nl/mok/App2.java" write="false" />
+	</files>
+	<tests>
+		<test name="Test1" description="Test description" />
+		<test name="Test2" description="Test description" />
+	</tests>
+	<hints>
+		<hint text="Hint 1" time="100" />
+		<hint text="Hint 2" time="200" />
+	</hints>
+</assignment>

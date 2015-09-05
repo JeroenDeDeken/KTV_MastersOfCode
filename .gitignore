@@ -1,59 +1,27 @@
-*.class
+.project
+/target/
+target
+**/.tern-project
+**/.settings/*
+**/doc/*
+/.settings
+.classpath
+/.project~
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# Windows
-# =========================
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
+TESTNG-*
+ivy*
+eclipse-build
+javadocs
+target
+test-output
+test-output-tests
+z_build
+maven-testng-plugin-1.2.jar
+.settings
+src/test/java/test/ignore
+.classpath
+.project
+.idea
+testng.iml
+.ant-targets*
+nb-configuration.xml

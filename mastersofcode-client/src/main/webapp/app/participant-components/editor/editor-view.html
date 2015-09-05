@@ -1,0 +1,139 @@
+<div id="wrapper">
+
+	<header-view></header-view>
+
+	<div id='content' class='hasMenu isEditor'>
+		<div class='breadcrumbs'>
+			<a ui-sref="dashboard" class='home'></a> <span> / <a
+				ui-sref="dashboard">{{ 'DASHBOARD' | translate }}</a> / {{ 'EDITOR'
+				| translate }} /
+			</span><span id="selectedFile"></span> <a id="editorCodeInfo" class="button"><i
+				class="fa fa-info"></i> {{ 'SHORTCUTS' | translate }}</a> <a
+				id="editorCodeFormat" class="button"><i class="fa fa-cog"></i>{{
+				'FORMAT_CODE' | translate }}</a>
+
+		</div>
+
+		<div class='hasEditor menu-left'>
+
+			<h1>{{ 'ASSIGNMENT' | translate }}</h1>
+			<ul class='assignments'>
+				<li><i class="fa fa-info-circle"></i>{{round.assignment.name}}</li>
+			</ul>
+
+			<h1>
+				{{ 'FILES' | translate }} <i class="fa fa-minus"></i>
+			</h1>
+			<ul class='files'></ul>
+
+			<h1>
+				{{ 'TESTS' | translate }} <i class="fa fa-minus"></i>
+			</h1>
+			<ul class='tests'></ul>
+
+			<h1>
+				{{ 'HINTS' | translate }} <i class="fa fa-minus"></i>
+			</h1>
+
+			<ul class='hints'>
+				<li><i class="fa fa-question-circle"></i> Hint 1</li>
+			</ul>
+
+			<h1>
+				{{ 'NEWS_FEED' | translate }} <i class="fa fa-minus"></i>
+			</h1>
+			<newsfeed-block></newsfeed-block>
+		</div>
+
+		<div class='content-right editor'>
+
+			<div id='assignment'>
+				<h1>{{round.assignment.name}}</h1>
+
+				<h2>{{ 'ASSIGNMENT_DESCRIPTION' | translate }}</h2>
+				<p>{{round.assignment.participantDescription}}</p>
+
+				<h2>{{ 'CREATOR_NAME' | translate }}</h2>
+				<p>{{round.assignment.creatorName}}</p>
+
+				<h2>{{ 'CREATOR_ORGANISATION' | translate }}</h2>
+				<p>{{round.assignment.creatorOrganisation}}</p>
+
+				<h2>{{ 'CREATOR_LINK' | translate }}</h2>
+				<p>
+					<a href='{{round.assignment.creatorLink}}' target='_blank'>{{round.assignment.creatorLink}}</a>
+				</p>
+
+				<h2>{{ 'ROUND_DURATION' | translate }}</h2>
+				<p>{{round.duration | secondsToDateTime | date:'HH:mm:ss'}}</p>
+			</div>
+
+			<div id='code-marker'></div>
+
+
+			<div class='code-editor'>
+				<textarea id='code-editor'></textarea>
+			</div>
+
+			<div class='footer'>
+				<a id='save' class='button' nohref><i class="fa fa-floppy-o"></i>{{
+					'SAVE' | translate }}</a> <a id='compile' class='button' nohref><i
+					class="fa fa-wrench"></i>{{ 'COMPILE' | translate }}</a> <a id='test'
+					class='button' nohref><i class="fa fa-flask"></i>{{ 'TEST_ALL'
+					| translate }}</a> <a id='submit' class='button' nohref><i
+					class="fa fa-check"></i>{{ 'SUBMIT' | translate }}</a> <a id='clear'
+					class='button' nohref><i class="fa fa-trash-o"></i>{{
+					'CLEAR_CONSOLE' | translate }}</a>
+			</div>
+
+			<div class='outputs'>
+				<textarea id='build-output' class='build-output' disabled='disabled'></textarea>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+<div id="loaded_files"></div>
+<div id="loaded_tests"></div>
+
+<div id="info">
+	<div id="info_inner">
+		<h1>
+			<span class='title'></span> <i class="fa fa-times"
+				style='float: right; cursor: pointer;'></i>
+		</h1>
+		<p class='text'></p>
+	</div>
+</div>
+
+<script>
+$(".assignments li").on("click", function() {
+	$("#code-marker, .code-editor").hide();
+	$(".active").removeClass("active");
+	$(this).addClass("active");
+	$("#selectedFile").html("Assignment");
+	$("#editorCodeFormat").addClass("disabled");
+	$("#assignment").show();
+});
+
+
+ /*
+  * Method to shop popup in center of screen 
+  * with dimmed background
+  */
+function showPopup(title, text) {
+	$("#info_inner").find(".title").html(title);
+ 	$("#info_inner").find(".text").html(text);
+ 	$("#info").fadeToggle("fast"); 
+ 	$("#info_inner").center(true); 
+}
+
+// Close popup on close button or click outside or esc
+$("i.fa.fa-times, #info").on("click", function() { $("#info").fadeOut("fast"); });
+$(document).keyup(function(e) { if (e.keyCode == 27) $("#info").fadeOut("fast");  });
+
+
+
+</script>

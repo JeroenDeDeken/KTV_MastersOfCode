@@ -1,0 +1,15 @@
+<div class='teamrow' ng-repeat="t in competition.teams | orderObjectBy:'totalscore':true">
+	<div class='left'>
+		<a nohref><h1>
+			{{t.teamname}} 
+			<span class='score'>{{'SCORE' | translate}} : {{getScoreTotal(t)}}</span>
+		</h1>
+		</a>
+	</div>
+	<div class='right'>
+		<a nohref><div id='{{getScorePerRound(t, r)}}' class='score-bar' ng-repeat="r in competition.rounds | orderObjectBy:'id'">		
+			<h1>{{'ROUND' | translate}} {{$index + 1}}</h1>
+			<p>{{getScorePerRound(t, r)}}</p>
+		</div></a>
+	</div>
+</div>

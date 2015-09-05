@@ -1,0 +1,20 @@
+<div id="wrapper">
+
+	<header-View></header-View>
+
+	<div id='content'>
+		<div class='breadcrumbs'>
+			<a ui-sref="dashboard" class='home'></a> <span> / <a ui-sref="dashboard">{{ 'DASHBOARD' | translate }}</a> / {{competition.title}}</span>
+		</div>
+
+		<h1>{{ angular.isUndefined(competition) ? ("COMPETITION_NOT_STARTED" | translate) : competition.title}}</h1>
+		
+		<p class='scores'>
+			<score-block></score-block>
+		</p>
+				
+		<div id='footer'>
+			<a ui-sref="dashboard" class='footer-button'>{{ 'DASHBOARD' | translate }}</a>
+		</div>
+	</div>
+</div>

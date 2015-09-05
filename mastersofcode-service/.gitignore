@@ -1,0 +1,13 @@
+.classpath
+.project
+target
+.settings
+.DS_Store
+.faces-config.xml.jsfdia
+bin
+MANIFEST.MF
+*.swp
+*.iml
+*.idea
+local-stage
+.tern-project

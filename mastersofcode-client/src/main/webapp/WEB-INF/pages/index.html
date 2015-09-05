@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="MoC" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="MoC" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="MoC" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="MoC" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Masters of Code</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- MarkDown -->
+<script src="assets/lib/markdown/lib/marked.js"></script>
+<!-- Layout -->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href='/assets/css/style.css' rel='stylesheet' type='text/css'>
+
+<!-- Editor Core - CSS/JS -->
+<link rel="stylesheet"
+	href="/assets/lib/codemirror-5.1/lib/codemirror.css">
+<script src="/assets/lib/codemirror-5.1/lib/codemirror.js"></script>
+<script src="/assets/lib/codemirror-5.1/lib/formatting.js"></script>
+
+<!-- Editor Theme - CSS -->
+<link rel="stylesheet" href="/assets/lib/codemirror-5.1/theme/neat.css">
+
+<!-- Editor Add-Ons - CSS -->
+<link rel="stylesheet"
+	href="/assets/lib/codemirror-5.1/addon/hint/show-hint.css">
+<link rel="stylesheet"
+	href="/assets/lib/codemirror-5.1/addon/display/fullscreen.css">
+<link rel="stylesheet"
+	href="/assets/lib/codemirror-5.1/addon/dialog/dialog.css">
+<link rel="stylesheet"
+	href="/assets/lib/codemirror-5.1/addon/scroll/simplescrollbars.css">
+
+<!-- Editor Add-Ons - JS -->
+<script src="/assets/lib/codemirror-5.1/addon/edit/matchbrackets.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/hint/show-hint.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/hint/anyword-hint.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/edit/closebrackets.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/selection/active-line.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/display/fullscreen.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/search/searchcursor.js"></script>
+<script
+	src="/assets/lib/codemirror-5.1/addon/search/match-highlighter.js"></script>
+<script
+	src="/assets/lib/codemirror-5.1/addon/scroll/simplescrollbars.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/dialog/dialog.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/search/searchcursor.js"></script>
+<script src="/assets/lib/codemirror-5.1/addon/search/search.js"></script>
+
+<!-- Editor File Mode - JS -->
+<script src="/assets/lib/codemirror-5.1/mode/clike/clike.js"></script>
+
+
+<!-- jQuery UI -->
+<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css">
+<script src="/assets/lib/jquery/jquery.js"></script>
+<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
+
+<!-- Angular -->
+<script type="text/javascript" src="/assets/lib/angular/angular.js"></script>
+<script type="text/javascript"
+	src="http://code.angularjs.org/1.3.15/angular-sanitize.js"></script>
+<script type="text/javascript"
+	src="/assets/lib/angular/angular-ui-router.min.js"></script>
+<script type="text/javascript"
+	src="/assets/lib/angular/angular-resource.min.js"></script>
+<script type="text/javascript"
+	src="/assets/lib/angular/angular-websocket.js"></script>
+<script type="text/javascript" src="/assets/lib/angular/angucomplete.js"></script>
+<script type="text/javascript"
+	src="/assets/lib/angular/angular-cookies.js"></script>
+
+<!-- Translator -->
+<script src="/app/shared-components/translator/translator.js"></script>
+
+<!--  Dialog service CSS/JS -->
+<script src="/assets/lib/ngdialog/ngDialog.js"></script>
+<link rel="stylesheet" href="/assets/lib/ngdialog/ngDialog.css">
+<link rel="stylesheet"
+	href="/assets/lib/ngdialog/ngDialog-theme-default.css">
+<link rel="stylesheet"
+	href="/assets/lib/ngdialog/ngDialog-theme-plain.css">
+
+</head>
+<body>
+
+	<div class='fade' ui-view></div>
+
+	<script src="/app/app.module.js"></script>
+
+	<script
+		src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+
+	<!-- Components -->
+	<script src="/app/admin-components/dashboard/admin-dashboard.js"></script>
+	<script src="/app/admin-components/competition/competition.js"></script>
+	<script src="/app/admin-components/assignment/assignment.js"></script>
+	<script src="/app/admin-components/round/round.js"></script>
+	<script src="/app/admin-components/hint/hint.js"></script>
+	<script src="/app/admin-components/participant/participant.js"></script>
+	<script src="/app/admin-components/team/team.js"></script>
+	<script src="/app/admin-components/node/node-view.js"></script>
+	<script
+		src="/app/participant-components/dashboard/participant-dashboard.js"></script>
+	<script src="/app/participant-components/editor/editor.js"></script>
+
+
+	<!-- Shared Components -->
+	<script src="/app/shared-components/score-block/score-block.js"></script>
+	<script
+		src="/app/shared-components/competition-menu/competition-menu.js"></script>
+	<script src="/app/shared-components/header/header.js"></script>
+	<script src="/app/shared-components/restresource.js"></script>
+	<script src="/app/shared-components/newsfeed/newsfeed.js"></script>
+	<script src="/app/shared-components/clockwebsocket.js"></script>
+
+
+	<script src="/app/public-components/dashboard/public-dashboard.js"></script>
+
+	<script src="/assets/js/webclocket.js"></script>
+
+</body>
+</html>
