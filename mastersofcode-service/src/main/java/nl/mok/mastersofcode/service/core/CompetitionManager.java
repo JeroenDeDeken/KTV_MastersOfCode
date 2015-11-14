@@ -76,15 +76,7 @@ public class CompetitionManager {
 
 	@PostConstruct
 	private void init() {
-		LOGGER.log(INFO, "Initializing guest account");
-		User guest = new User();
-		guest.setUsername("guest");
-		guest.setPassword("guest");
-		guest.setRole("guest");
-		guest.setFullname("Guest");
-		guest.setEmail("guest@mok.local");
-		guest.setTeamname("Masters of Code");
-		em.merge(guest);
+		//TODO
 	}
 
 	/**
@@ -93,7 +85,7 @@ public class CompetitionManager {
 	 * @return The competition ID
 	 */
 	public Integer getCurrentCompetition() {
-		return currentCompetitionId;
+		return 0;
 	}
 
 	/**
@@ -105,14 +97,6 @@ public class CompetitionManager {
 	 * @return Boolean indicating if the competition was successfully set.
 	 */
 	public boolean setCurrentCompetition(Integer id) {
-		Competition competition;
-		competition = em.find(Competition.class, id);
-		if (competition != null) {
-			this.currentCompetitionId = competition.getId();
-		} else {
-			return false;
-		}
-		assignNodes();
 		return true;
 	}
 
@@ -120,8 +104,7 @@ public class CompetitionManager {
 	 * Stops the current competition. This will also stop the current round.
 	 */
 	public void stopCompetition() {
-		timeService.stop();
-		this.currentCompetitionId = null;
+		//TODO
 	}
 
 	/**
@@ -130,7 +113,7 @@ public class CompetitionManager {
 	 * @return Current round ID
 	 */
 	public Integer getCurrentRound() {
-		return currentRoundId;
+		return 0;
 	}
 
 	/**
@@ -142,26 +125,6 @@ public class CompetitionManager {
 	 * @return True if the round is successfully started, false otherwise
 	 */
 	public boolean setCurrentRound(Integer id) {
-		Integer currentCompetitionId = getCurrentCompetition();
-		if (currentCompetitionId == null) {
-			return false;
-		}
-		Round round;
-		try {
-			round = em.find(Round.class, id);
-		} catch (NumberFormatException nx) {
-			return false;
-		}
-		if (round == null) {
-			return false;
-		}
-		if (!currentCompetitionId.equals(round.getCompetition())) {
-			return false;
-		}
-		this.hints = round.getAssignment().getHints();
-		timeService.setClock(round.getDuration());
-		timeService.start();
-		this.currentRoundId = round.getId();
 		return true;
 	}
 
@@ -174,21 +137,7 @@ public class CompetitionManager {
 	 *            The received clock tick
 	 */
 	public void onTick(@Observes ClockTick tick) {
-		if (!tick.isActive() && currentRoundId != null) {
-			LOGGER.log(INFO, "Round #" + currentRoundId + " stopped");
-			this.currentRoundId = null;
-		}
-		if (tick.isActive()) {
-			int time = tick.getTotal() - tick.getRemaining();
-			if (currentRoundId != null && hints != null) {
-				for (Hint hint : hints) {
-					if (time >= hint.getTime()) {
-						hints.remove(hint);
-						sendHint(hint);
-					}
-				}
-			}
-		}
+		//TODO
 	}
 
 	/*
@@ -196,24 +145,10 @@ public class CompetitionManager {
 	 * the current competition.
 	 */
 	private void assignNodes() {
-		List<Integer> nodes = requestSender.getAvailableNodes();
-		if (nodes.size() < 1) {
-			LOGGER.log(WARNING, "No active nodes available!");
-			return;
-		}
-		Random random = new Random();
-		for (User user : userService.getUsers()) {
-			if (user.getRole().equals("team")) {
-				int nodeId = nodes.get((random.nextInt(nodes.size())));
-				Node node = nodeService.getNode(nodeId);
-				user.setNode(node);
-				em.merge(user);
-				LOGGER.log(INFO, "Assigned " + node + " to " + user);
-			}
-		}
+		//TODO
 	}
 
 	private void sendHint(Hint hint) {
-		router.broadcastHints(Collections.singletonList(hint));
+		//TODO
 	}
 }
